@@ -1,22 +1,26 @@
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import Sets from './Pages/Sets';
+import Parts from './Pages/Parts';
 import Help from './Pages/Help';
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <Nav>
-        <NavItem href="#sets">Zestawy (Sets)</NavItem>
-        <NavItem href="#parts">Części (Parts)</NavItem>
-        <NavItem href="#help">Pomoc (FAQ)</NavItem>
+        <NavItem to="/sets">Zestawy (Sets)</NavItem>
+        <NavItem to="/parts">Części (Parts)</NavItem>
+        <NavItem to="/help">Pomoc (FAQ)</NavItem>
       </Nav>
-      <Section id="sets">
-        <Sets />
-      </Section>
-      <Section id="help">
-        <Help />
-      </Section>
-    </div>
+      <Main>
+        <Routes>
+          <Route path="/sets" element={<Sets />} />
+          <Route path="/sets/:setId" element={<Parts />} />
+          <Route path="/parts" element={<Navigate to="/sets/1" />} />
+          <Route path="/help" element={<Help />} />
+        </Routes>
+      </Main>
+    </Router>
   );
 };
 
@@ -29,7 +33,7 @@ const Nav = styled.nav`
   padding: 1rem;
 `;
 
-const NavItem = styled.a`
+const NavItem = styled(Link)`
   color: #fff;
   text-decoration: none;
   &:hover {
@@ -37,13 +41,6 @@ const NavItem = styled.a`
   }
 `;
 
-const Section = styled.section`
-  padding: 4rem 0;
-  &:nth-of-type(odd) {
-    background-color: #f9f9f9;
-  }
-  &:nth-of-type(even) {
-    background-color: #fff;
-  }
+const Main = styled.main`
+  padding: 2rem;
 `;
-
