@@ -1,21 +1,22 @@
 import { SplitScreen } from '../components/SplitScreen';
+import FAQList from '../components/FAQList';
+import ContactForm from '../components/ContactForm';
 
-const LeftSideComp = ()=>{
-	return <h1>FAQ</h1>;
-}
-const RightSideComp = ()=>{
+const LeftSideComp = () => {
+  return <FAQList />;
+};
 
-
-	return <h1>FORM</h1>;
-}	
+const RightSideComp = () => {
+  return <ContactForm />;
+};
 
 const Help = () => {
-    return (
-      <div>
-        <h1>Pomoc (Help)</h1>
-        <SplitScreen left={LeftSideComp} right={RightSideComp} />
-      </div>
-    );
-  };
-  
-  export default Help;
+  return (
+    <div>
+      <h1>Pomoc (Help)</h1>
+      <SplitScreen left={LeftSideComp} right={RightSideComp} />
+    </div>
+  );
+};
+
+export default Help;

@@ -1,17 +1,25 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const ListItem = ({ image, name, number, initialQuantity, price }) => {
+const ListItem = ({ image, name, number, initialQuantity, price, index, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
 
+  useEffect(() => {
+    setQuantity(initialQuantity);
+  }, [initialQuantity]);
+
   const handleIncrease = () => {
-    setQuantity(quantity + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onQuantityChange(index, newQuantity);
   };
 
   const handleDecrease = () => {
     if (quantity > 0) {
-      setQuantity(quantity - 1);
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      onQuantityChange(index, newQuantity);
     }
   };
 

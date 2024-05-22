@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Sets from './Pages/Sets';
-import Parts from './Pages/Parts';
 import Help from './Pages/Help';
 
 const App = () => {
@@ -13,9 +12,6 @@ const App = () => {
       </Nav>
       <Section id="sets">
         <Sets />
-      </Section>
-      <Section id="parts">
-        <Parts />
       </Section>
       <Section id="help">
         <Help />
@@ -50,3 +46,4 @@ const Section = styled.section`
     background-color: #fff;
   }
 `;
+

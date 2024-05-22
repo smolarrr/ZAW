@@ -1,34 +1,27 @@
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
 import RegularList from '../components/RegularList';
 
-const sampleItems = [
-  {
-    image: 'https://via.placeholder.com/50',
-    name: 'Lego classic',
-    number: '12345',
-    initialQuantity: 1,
-    price: 0.12
-  },
-    {
-        image: 'https://via.placeholder.com/50',
-        name: 'lego technic',
-        number: '54321',
-        initialQuantity: 1,
-        price: 0.05
-    },
-    {
-        image: 'https://via.placeholder.com/50',
-        name: 'Lego star wars',
-        number: '67890',
-        initialQuantity: 1,
-        price: 0.03
-    }
-];
+const Parts = ({ selectedSet, partsData, onQuantityChange }) => {
+  const [items, setItems] = useState(partsData || []);
 
-const Parts = () => {
+  useEffect(() => {
+    setItems(partsData || []);
+  }, [partsData]);
+
+  const handleQuantityChange = (partIndex, newQuantity) => {
+    onQuantityChange(selectedSet.id, partIndex, newQuantity);
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      newItems[partIndex].initialQuantity = newQuantity;
+      return newItems;
+    });
+  };
+
   return (
     <div>
-      <h1>Części (Parts)</h1>
-      <RegularList items={sampleItems} />
+      <h1>Części (Parts) - {selectedSet.name}</h1>
+      <RegularList items={items} onQuantityChange={handleQuantityChange} />
     </div>
   );
 };

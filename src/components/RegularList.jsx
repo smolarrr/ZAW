@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import ListItem from './ListItem';
 
-const RegularList = ({ items }) => {
+const RegularList = ({ items, onQuantityChange }) => {
   return (
     <Table>
       <thead>
@@ -16,7 +16,7 @@ const RegularList = ({ items }) => {
       </thead>
       <tbody>
         {items.map((item, index) => (
-          <ListItem key={index} {...item} />
+          <ListItem key={index} {...item} index={index} onQuantityChange={onQuantityChange} />
         ))}
       </tbody>
     </Table>
